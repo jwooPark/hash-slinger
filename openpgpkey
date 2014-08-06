@@ -63,7 +63,7 @@ if __name__ == '__main__':
 	parser.add_argument('--insecure', action='store_true', default=False, help='Allow use of non-dnssec secured answers')
 	parser.add_argument('--resolvconf', action='store', default='', help='Use a recursive resolver listed in a resolv.conf file (default: /etc/resolv.conf)')
 	parser.add_argument('--rootanchor', action='store', default='/var/lib/unbound/root.anchor', help='Location of the unbound compatible DNSSEC root.anchor (default: /var/lib/unbound/root.anchor)')
-	parser.add_argument('--rrtype', metavar='rrtype', action='store', default=65280, help='Location of the unbound compatible DNSSEC root.anchor (default: /var/lib/unbound/root.anchor)')
+	parser.add_argument('--rrtype', metavar='rrtype', action='store', default=65280, help='OPENPGPKEY RR type number. (default: 65280, to be changed)')
 	parser.add_argument('email', metavar="email")
 
 	parser.add_argument('--debug', '-d', action='store_true', help='Print details plus the result of the validation')
@@ -174,7 +174,7 @@ if __name__ == '__main__':
 					if args.output !=  "rfc":
 						if args.debug:
 							print "Length for generic record is %s"%len(ekey)
-						print "%s._openpgpkey.%s. IN TYPE65280 \# %s %s"%(euser,domain,len(ekey64),asctohex(ekey))
+						print "%s._openpgpkey.%s. IN TYPE65280 \# %s %s"%(euser,domain,len(ekey),asctohex(ekey))
 		if not found:
 			sys.exit("No key found containing the email address '%s' in the keyid(s)"%args.email)
 		
